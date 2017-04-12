@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, .container {
+    widht: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: white;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    width: 50%;
+    background-color: #fff;
+    padding: 1em;
+    border-radius: .2em;
+    box-shadow: 0 4px 8px 4px rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: space-between;
+}
+
+.fa {
+    color: white;
+}
+
+.btn {
+    /* button reset */
+    border: none;
+    outline: none;
+    width: 2em;
+    height: 2em;
+    line-height: 2em;
+    text-align: center;
+    background-color: white;
+    font-size: 1.5em;
+    border-radius: 1em;
+    cursor: pointer;
+    margin: .2em 0;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.content {
+    padding: 1em 2em;
+}
+
+.content i {
+    color: inherit;
+    font-size: 1.2em;
+    vertical-align: top;
+    padding-right: .5em;
+}
+
+.quote-text {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.quote-author {
+    padding-top: 1em;
+    text-align: right;
+}
+
+.btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+footer {
+    color: white;
+    clear: both;
+    width: 100%;
+    text-align: center;
+    margin: 1em 0 2em;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ccc;
+    font-weight: 600;
+}
