@@ -20,7 +20,7 @@ var degreeC, degreeF;
 function switchFC() {
   var $btn = $('.degree button');
   var $degree = $('.degree span');
-  console.log(degreeC + "," + degreeF);
+
   if ($btn.text() === "C") {
     $degree.text(degreeF + unit);
     $btn.text('F');
@@ -28,7 +28,6 @@ function switchFC() {
     $degree.text(degreeC + unit);
     $btn.text('C');
   }
-
 }
 
 var unit = '°';
@@ -39,7 +38,6 @@ $(document).ready(function() {
   if (window.navigator && window.navigator.geolocation) {
     window.navigator.geolocation.getCurrentPosition(function(position) {
       $.getJSON(openWeatherMap + position.coords.latitude + ',' + position.coords.longitude).done(function(weather) {
-        console.log(weather)
         degreeC = weather.current.feelslike_c;
         degreeF = weather.current.feelslike_f;
         $('.degree span').text(degreeC + unit);
