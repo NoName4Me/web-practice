@@ -4,3 +4,7 @@ front-end basic practice
 ## 1. random quote
 
 FCC exercise，use [Random Famous Quote api](https://market.mashape.com/andruxnet/random-famous-quotes), see demo on [CodePen](https://codepen.io/blurnull/pen/xqvQYO).
+
+## 2. local weather
+
+FCC exercise, use [Weather Api](https://www.apixu.com/), see demo on [CodePen](https://codepen.io/blurnull/full/QvWorr/).
