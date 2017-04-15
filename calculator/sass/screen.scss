@@ -1,0 +1,73 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+// @import "compass/reset";
+@import "compass/reset/utilities";
+@import "bases";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+html, body{
+  font: {
+    size: 16px;
+    family: "Open Sans","Helvetica","Arial",sans-serif;
+  }
+  @include wh;
+  @include reset-box-model;
+
+}
+
+$calculator-width: 240px;
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.container {
+  padding:0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  width: $calculator-width;
+  background-color: $color-dark;
+  .screen{
+    height: 100px;
+    width: $calculator-width;
+    background-color: #fe396b;
+    color: white;
+    box-shadow: 2px 2px 16px 2px rgba(254,57,107,.2);
+    p {
+      margin:0;
+      padding: 5px 10px;
+      text-align: right;
+    }
+    .current-input{
+      font-size: 2em;
+      padding: .5em 10px;
+    }
+  }
+
+  box-shadow: 2px 8px 16px 1px rgba(42,45,43,.4), 4px 16px 32px 2px rgba(42,45,43,.2);
+}
+.div-flex{
+  display: flex;
+  flex-wrap: wrap;
+  width: $calculator-width /4 *3;
+}
+button{
+  float: left;
+  outline: none;
+  background: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5em;
+}
+
+@include oneKey($calculator-width,4,2);

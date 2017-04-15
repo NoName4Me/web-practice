@@ -1,0 +1,41 @@
+/*!
+* basic settings
+*/
+@mixin wh($w:100%, $h:100%) {
+    width: $w;
+    height: $h;
+}
+$color-dark: #2a2e4b;
+
+%key-style {
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 100%;
+    border: 1px solid rgba(255,255,255,.2);
+
+    &:hover {
+        background-color: rgba(254,57,107,.4);
+    }
+    &:active{
+      background-color: #fe396b;
+    }
+}
+@mixin oneKey($w,$n,$pn) {
+    $basicW: $w / $n;
+
+    .key {
+        width: $basicW;
+        height: $basicW;
+        @extend %key-style;
+    }
+
+    .key-h-#{$pn} {
+        width: $basicW * $pn;
+        height: $basicW;
+    }
+
+    .key-v-#{$pn} {
+        height: $basicW * $pn;
+        width: $basicW;
+    }
+}
