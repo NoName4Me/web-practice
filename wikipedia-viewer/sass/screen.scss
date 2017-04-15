@@ -1,0 +1,126 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+ %reset {
+   margin: 0;
+   padding: 0;
+ }
+
+ %link-reset {
+   text-decoration: none;
+ }
+
+ a {
+   @extend %link-reset;
+ }
+
+ button {
+   border: none;
+   outline: none;
+   background: none;
+   cursor: pointer;
+ }
+
+ body,
+ html {
+   width: 100%;
+   @extend %reset;
+ }
+
+ body {
+   color: white;
+   background-color: #37474f;
+ }
+
+ .container {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   flex-wrap: wrap;
+
+   div {
+     width: 100%;
+     text-align: center;
+     margin-top: 2em;
+   }
+
+   .results {
+     text-align: center;
+
+     .result-card {
+       margin: 0.8em auto;
+       padding: 0.5em 1em;
+       width: 80%;
+       text-align: left;
+       color: #37474f;
+       background-color: #fff;
+       border-radius: 0.4em;
+       cursor: pointer;
+
+       a {
+         width: 100%;
+         height: 100%;
+         @extend %link-reset;
+         color: #37474f;
+       }
+
+       &:hover {
+         background-color: #ff8a80;
+       }
+     }
+   }
+ }
+
+ #search-form {
+   margin: 0 auto;
+   height: 3em;
+   width: 60%;
+   border: 2px solid #ff8a80;
+   border-radius: 1.5em;
+   background-color: #fff;
+   text-align: left;
+   display: flex;
+   align-items: center;
+
+   input {
+     flex: 1 1;
+     color: #37474f;
+     margin-left: 2em;
+     height: 90%;
+     border: none;
+     outline: none;
+     font-size: 1.5em;
+   }
+
+   button {
+     flex: 0 1 3em;
+     float: right;
+   }
+ }
+
+ .fa-random {
+   font-size: 2em;
+   color: white;
+
+   &:hover {
+     opacity: 0.8;
+   }
+ }
+
+ .fa-close,
+ .fa-search {
+   font-size: 4em;
+   color: #ff8a80;
+
+   &:hover {
+     opacity: 0.8;
+   }
+ }
+
+ .fa-close {
+   font-size: 3em;
+ }
