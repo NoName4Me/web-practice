@@ -1,0 +1,282 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  text-align: center;
+  padding: 1em 0;
+}
+
+a:hover {
+  font-weight: 600;
+  opacity: .6;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: .8;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+body {
+  font-size: 16px;
+  background-color: #36485f;
+  background-image: linear-gradient(135deg, #ee7375 0%, #482f5d 100%);
+  color: white;
+  flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+body>* {
+  width: 100%;
+  /*flex: 1 0 100%;*/
+}
+
+header {
+  height: 4em;
+  box-shadow: 0 2px 4px 2px rgba(0, 0, 0, .4);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1em;
+}
+
+nav span {
+  font-size: 3em;
+}
+
+main {
+  flex: 2;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.chat-panel, .login-panel {
+  max-width: 800px;
+  margin: 1em auto;
+  background-color: white;
+  border-radius: .2em;
+  box-shadow: 0 4px 16px 2px rgba(0, 0, 0, .4);
+}
+
+.login-panel {
+  background-color: rgba(255, 255, 255, .4);
+  padding: 2em 1em;
+  max-width: 360px;
+}
+
+.btn {
+  padding: .5em 1em;
+  text-align: center;
+  background-color: #d34b78;
+  color: white;
+  font-size: 1.5em;
+  border-radius: .2em;
+}
+
+.row-flex-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.login-content {
+  height: 90%;
+}
+
+.login-input {
+  padding: 0 .5em;
+  color: #482f5d;
+  font-size: 1.5em;
+  margin: .2em 0 1em;
+  height: 2em;
+  opacity: .8;
+}
+
+.full-width-flex {
+  width: 100%;
+}
+
+.login-msg {
+  color: #482f5d;
+}
+
+.chat-panel {
+  color: black;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  min-width: 320px;
+}
+
+.chat-panel>* {
+  padding: .5em;
+}
+
+.chat-content {
+  width: 70%;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.msg-list {
+  flex: 2;
+  overflow-y: auto;
+}
+
+.msg-list::-webkit-scrollbar {
+  border-radius: 3px;
+  width: 6px;
+  background-color: #f2d7f5;
+}
+
+.msg-list::-webkit-scrollbar-thumb {
+  /*width: 6px;*/
+  border-radius: 3px;
+  background-color: #7b1fa2;
+}
+
+.one-msg {
+  display: flex;
+  align-items: flex-start;
+  margin: 1em .5em .5em 0;
+}
+
+.self {
+  flex-direction: row-reverse;
+}
+
+.self>p {
+  background-color: #7b1fa2 !important;
+  color: white;
+}
+
+.one-msg .user-info {
+  flex: 0 3em;
+  text-align: center;
+}
+
+.one-msg .user-info p {
+  font-size: .8em;
+}
+
+.one-msg img {
+  font-size: 1em;
+  padding: .2em;
+  width: 3em;
+  height: 3em;
+  border: 1px solid #ccc;
+  border-radius: 1.5em;
+}
+
+.one-msg>p {
+  margin: .5em 1em .5em .5em;
+  padding: .5em 1em;
+  /*flex: 2;*/
+  background-color: #eff1f0;
+  border-radius: 1.2em;
+}
+
+.join-leave {
+  justify-content: center;
+  font-size: .8em;
+}
+
+.msg-input {
+  /*height: 4em;*/
+  flex: 0 0 4em;
+  border-top: 1px solid #482f5d;
+}
+
+.msg-input form {
+  height: 100%;
+  display: flex;
+  padding: .5em 0;
+  align-items: stretch;
+}
+
+.msg-input form button {
+  flex: 0 1 2em;
+  border-radius: 0 .2em .2em 0;
+}
+
+.msg-input form input {
+  border-radius: .3em 0 0 .3em;
+  padding-left: .5em;
+  flex: 1;
+  font-size: 1em;
+  border: 1px solid #d34b78;
+}
+
+.chat-users {
+  width: 30%;
+  min-width: 100px;
+  border-left: 1px solid #482f5d;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info>* {
+  vertical-align: middle;
+}
+
+.one-user {
+  margin-top: .5em;
+}
+
+.one-user img {
+  padding: .2em;
+  width: 2em;
+  height: 2em;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+}
+
+.user-info span {
+  padding-left: .5em;
+}
+
+.user-list {
+  overflow-y: auto;
+  flex: 2;
+}
+
+.user-list::-webkit-scrollbar {
+  border-radius: 3px;
+  width: 6px;
+  background-color: #f2d7f5;;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+  width: 6px;
+  background-color: #7b1fa2;
+}
+
+footer {
+  height: 4em;
+  line-height: 4em;
+  text-align: center;
+  align-self: flex-end;
+}

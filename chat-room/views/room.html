@@ -1,0 +1,151 @@
+{% extends "base.html" %} {% block main %}
+
+<script>
+  function addToUserList(list, user) {
+    list.push(user);
+  }
+
+  function removeFromUserList(list, user) {
+    list = list.filter(x => {
+      x.username !== user.username;
+    })
+  }
+
+  function addMessage(list, msg) {
+    list.push(msg);
+
+    $('#msg-list').animate({
+      scrollTop: $('#msg-list').height()
+    }, 1000);
+  }
+
+  $(function() {
+    var users = [];
+    var vmMessageList = new Vue({
+      el: "#msg-list",
+      data: {
+        parentMessage: '',
+        messages: []
+      }
+    });
+
+    var vmUserList = new Vue({
+      el: "#user-list",
+      data: {
+        parentMessage: '',
+        users: users
+      }
+    });
+
+    function makeMsg(msg) {
+      var oneMsg = {
+        username: msg.username,
+        user: msg.data,
+        type: msg.type,
+        msg: ""
+      };
+      if (msg.type === "say") {
+        oneMsg.user = users.filter(x => x.username === msg.username)[0];
+        oneMsg.msg = msg.data;
+      }
+      console.log("oneMsg: ", oneMsg);
+      return oneMsg;
+    }
+    var ws = new WebSocket('ws://localhost:3000/ws/chat');
+
+    ws.onmessage = function(event) {
+      var data = event.data;
+      console.log('get a msg:', data);
+      var msg = JSON.parse(data);
+      // [vmUserList.parentMessage, vmUserList.parentMessage] = [data.username, data.username];
+      if (msg.type === 'list') {
+        vmUserList.parentMessage = msg.username;
+        vmMessageList.parentMessage = msg.username;
+        users.splice.apply(users, [0, users.length].concat(msg.data));
+        // console.log(vmUserList.users, vmUserList.parentMessage);
+      } else if (msg.type === 'join') {
+        // let oneMsg = {
+        //   username: msg.username,
+        //   user: msg.data,
+        //   type: msg.type,
+        //   msg: ""
+        // };
+        addMessage(vmMessageList.messages, makeMsg(msg));
+        if (users.filter(x => x.username === msg.username).length < 1) {
+          addToUserList(vmUserList.users, msg.data);
+        }
+
+      } else if (msg.type === 'leave') {
+        removeFromUserList(vmUserList.users, msg.user);
+        addMessage(vmMessageList.messages, makeMsg(msg));
+      } else if (msg.type === 'say') {
+        addMessage(vmMessageList.messages, makeMsg(msg));
+      }
+      console.log(">>>>vmMessageList.parentMessage=", vmMessageList.parentMessage);
+      console.log(">>>>vmMessageList.messages=", vmMessageList.messages);
+    };
+
+    ws.onclose = function(evt) {
+      console.log('[closed] ' + evt.code);
+      var input = $('#form-chat').find('input[type=text]');
+      input.attr('placeholder', 'WebSocket disconnected.');
+      input.attr('disabled', 'disabled');
+      $('#form-chat').find('button').attr('disabled', 'disabled');
+    };
+
+    ws.onerror = function(code, msg) {
+      console.log('[ERROR] ' + code + ': ' + msg);
+    };
+
+    $('#form-chat').submit(function(e) {
+      e.preventDefault();
+      var input = $(this).find('input[type=text]');
+      var text = input.val().trim();
+      console.log('[chat] ' + text);
+      if (text) {
+        input.val('');
+        ws.send(text);
+      }
+    });
+  });
+</script>
+
+<div class="chat-panel  row-flex-container">
+  <div class="chat-content">
+    <div class="msg-list" id="msg-list">
+      <div class="one-msg" v-for="msg of messages" :class="{'join-leave': msg.type!=='say',self: parentMessage===msg.user.username}">
+        <template v-if="msg.type==='say'">
+        <div class="user-info">
+          <img :src="msg.user.avatar" alt="">
+          <p v-text="msg.user.nickname"></p>
+        </div>
+      </template>
+        <p v-if="msg.type==='say'" class="msg-content" v-text="msg.msg"></p>
+        <template v-if="msg.user.username!==parentMessage">
+        <p v-if="msg.type==='leave'" v-text="msg.user.nickname+' 离开聊天室'"></p>
+        <p v-if="msg.type==='join'" v-text="msg.user.nickname+' 进入聊天室'"></p>
+      </template>
+      </div>
+    </div>
+    <div class="msg-input">
+      <form id="form-chat" action="index.html" method="post">
+        <input type="text" name="say" placeHolder="说点儿什么...">
+        <button type="submit" name="button" class="btn">Send</button>
+      </form>
+    </div>
+  </div>
+  <div class="chat-users">
+    <p>聊天成员</p>
+    <div class="user-list" id="user-list">
+      <div class="one-user" v-for="user of users">
+        <div class="user-info">
+          <img :src="user.avatar" :title="'用户名: '+user.username">
+          <span v-if="parentMessage === user.username" style="color:#7b1fa2;font-weight:600" v-text="user.nickname"></span>
+          <span v-else v-text="user.nickname"></span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block main %}
+<div class="login-panel row-flex-container">
+  <p class="login-msg">{% if signupFailed %} 用户名重复！ {% else %} 注册账号。 {% endif %}</p>
+
+  <div class="login-content">
+    <form action="/signup" method="post" class="row-flex-container">
+      <div class="form-group">
+        <label class="full-width-flex">用户名</label>
+        <input class="full-width-flex login-input" type="text" name="username" value="{{ username }}">
+        <label class="full-width-flex">昵称</label>
+        <input class="full-width-flex login-input" type="text" name="nickname" value="{{ nickname }}">
+        <label class="full-width-flex">密码</label>
+        <input class="full-width-flex login-input" type="password" name="password">
+      </div>
+      <button type="submit" class="btn full-width-flex">注册</button>
+      <a class="full-width-flex" href="/signin">返回登录</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
