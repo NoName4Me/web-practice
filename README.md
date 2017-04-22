@@ -16,3 +16,8 @@ use [Wikipedia Api](https://www.mediawiki.org/wiki/API:Main_page), see demo on [
 
 ### 4. calculator
 see demo on [CodePen](http://codepen.io/blurnull/full/VbYJYN).
+
+
+## chat-room
+this is a practice of [LiaoXuefeng's Javascript Learning](http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000).
+simple web chat room, based on Node / Websocket / Koa / Nunjuncks / Vue / Sequelize.
