@@ -73,6 +73,9 @@ function defineModel(name, attributes) {
     tableName: name,
     timestamps: false,
     hooks: {
+		beforeBulkUpdate: function(options){
+			options.individualHooks = true;
+		},
       beforeCreate: function(obj) {
         let now = Date.now();
         console.log('will create entity...', obj);
