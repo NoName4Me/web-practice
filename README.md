@@ -23,4 +23,4 @@ this is a practice of [LiaoXuefeng's Javascript Learning](http://www.liaoxuefeng
 
 simple web chat room, based on Node / Websocket / Koa / Nunjuncks / Vue / Sequelize.
 
-<img src="https://raw.githubusercontent.com/NoName4Me/FE-basic-practice/master/chat-room/static/images/chat-room.png" width="500">
+<img src="https://github.com/NoName4Me/FE-basic-practice/blob/master/2.chat-room/static/images/chat-room.png" width="500">
