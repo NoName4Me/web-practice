@@ -1,0 +1,57 @@
+@font-face {
+  font-family: 'eleme-icon';
+  src:  url('fonts/eleme-icon.eot?xsttrp');
+  src:  url('fonts/eleme-icon.eot?xsttrp#iefix') format('embedded-opentype'),
+    url('fonts/eleme-icon.ttf?xsttrp') format('truetype'),
+    url('fonts/eleme-icon.woff?xsttrp') format('woff'),
+    url('fonts/eleme-icon.svg?xsttrp#eleme-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'eleme-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-add_circle:before {
+  content: "\e900";
+}
+.ic-arrow_lift:before {
+  content: "\e901";
+}
+.ic-check_circle:before {
+  content: "\e902";
+}
+.ic-close:before {
+  content: "\e903";
+}
+.ic-favorite:before {
+  content: "\e904";
+}
+.ic-keyboard_arrow_right:before {
+  content: "\e905";
+}
+.ic-remove_circle_outline:before {
+  content: "\e906";
+}
+.ic-shopping_cart:before {
+  content: "\e907";
+}
+.ic-thumb_down:before {
+  content: "\e908";
+}
+.ic-thumb_up:before {
+  content: "\e909";
+}
+
