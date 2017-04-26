@@ -6,10 +6,23 @@ html {
   font-weight: 200;
   font-family: "PingFang SC","STHeitiSC-Light","Helvetica-Light",arial,sans-serif;
 }
-// span{
-//   margin:0;
-//   padding: 0;
-// }
+
+ul,li{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.clearfix{
+  display: inline-block;
+  &after{
+    display: block;
+    content:".";
+    height:0;
+    line-height: 0;
+    clear:both;
+    visibility: hidden;
+  }
+}
 @mixin border-1px($color) {
   position: relative;
 
@@ -29,6 +42,29 @@ html {
     background-image: url($url+"@3x.png");
   }
 }
+
+@mixin star-style($name,$wh,$mg) {
+    .star-#{$name} {
+        width: $wh;
+        height: $wh;
+        margin-right: $mg;
+        background-size: $wh $wh;
+        background-repeat: no-repeat;
+        &:last-child {
+            margin-right: 0;
+        }
+        &.on {
+            @include bg-image( 'star#{$name}_on');
+        }
+        &.half {
+            @include bg-image( 'star#{$name}_half');
+        }
+        &.off {
+            @include bg-image( 'star#{$name}_off');
+        }
+    }
+}
+
 @media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5) {
   .border-1px {
     &:after {
