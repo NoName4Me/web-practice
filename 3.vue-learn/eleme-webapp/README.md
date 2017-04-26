@@ -1,4 +1,4 @@
-# seller
+# eleme-webapp
 
 > A Vue.js project
 

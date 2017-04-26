@@ -138,3 +138,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .ic-thumb_up:before {
   content: "\e909";
 }
+
+/* line 10, ../../src/common/sass/screen.scss */
+a {
+  text-decoration: none;
+}

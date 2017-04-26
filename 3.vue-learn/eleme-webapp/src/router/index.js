@@ -10,7 +10,8 @@ export default new Router({
   routes: [{
       path: '/seller',
       name: 'seller',
-      component: seller
+      component: seller,
+      alias: '/'
     }, {
       path: '/goods',
       name: 'goods',
@@ -21,5 +22,6 @@ export default new Router({
       name: 'ratings',
       component: ratings
     }
-  ]
+  ],
+  linkActiveClass: 'active'
 });

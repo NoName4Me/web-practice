@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'eleme-icon';
-  src:  url('fonts/eleme-icon.eot?xsttrp');
-  src:  url('fonts/eleme-icon.eot?xsttrp#iefix') format('embedded-opentype'),
-    url('fonts/eleme-icon.ttf?xsttrp') format('truetype'),
-    url('fonts/eleme-icon.woff?xsttrp') format('woff'),
-    url('fonts/eleme-icon.svg?xsttrp#eleme-icon') format('svg');
+  src:  url('../common/fonts/eleme-icon.eot?xsttrp');
+  src:  url('../common/fonts/eleme-icon.eot?xsttrp#iefix') format('embedded-opentype'),
+    url('../common/fonts/eleme-icon.ttf?xsttrp') format('truetype'),
+    url('../common/fonts/eleme-icon.woff?xsttrp') format('woff'),
+    url('../common/fonts/eleme-icon.svg?xsttrp#eleme-icon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -54,4 +54,3 @@
 .ic-thumb_up:before {
   content: "\e909";
 }
-

@@ -1,0 +1,63 @@
+<template>
+<div id="app">
+  <div class="header">
+    <v-header :seller="seller"></v-header>
+  </div>
+
+  <div class="tab border-1px">
+    <div class="tab-item">
+      <router-link to="/goods">商品</router-link>
+    </div>
+    <div class="tab-item">
+      <router-link to="/ratings">评论</router-link>
+    </div>
+    <div class="tab-item">
+      <router-link to="/seller">商家</router-link>
+    </div>
+
+  </div>
+  <router-view></router-view>
+</div>
+</template>
+
+<script>
+import header from './header/header.vue';
+export default {
+  data: function() {
+    return {
+      seller: {}
+    };
+  },
+  created: function() {
+    this.$http.get('/get/seller').then((res) => {
+      this.seller = res.body.data;
+      console.log(this.seller);
+    });
+  },
+  // name: 'App',
+  components: {
+    'v-header': header
+  }
+};
+</script>
+
+<style rel="stylesheet/scss" lang='scss'>
+@import '../common/sass/screen.scss';
+.tab {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 40px;
+    @include border-1px(rgba(7,17,21,.9));
+    .tab-item {
+        // flex: 2;
+        display: block;
+        & > a {
+            color: rgb(77,85,93);
+            &.active {
+                color: rgb(240,20,20);
+            }
+        }
+    }
+}
+</style>
