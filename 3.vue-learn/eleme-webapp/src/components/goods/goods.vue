@@ -27,6 +27,9 @@
               <div class="price">
                 <span class="now-price"><span class="pre">￥</span>{{food.price}}</span>
                 <span v-if="food.oldPrice" class="old-price"><span class="pre">￥</span>{{food.oldPrice}}</span>
+                <div class="number-ctrl-wrapper">
+                  <v-number-ctrl :food="food"></v-number-ctrl>
+                </div>
               </div>
             </div>
           </li>
@@ -34,13 +37,14 @@
       </li>
     </ul>
   </div>
-  <v-cart :cart-prices="{deliveryPrice:seller.deliveryPrice,minPrice:seller.minPrice}"></v-cart>
+  <v-cart :food-list="foodList" :cart-prices="{deliveryPrice:seller.deliveryPrice,minPrice:seller.minPrice}"></v-cart>
 </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll';
 import cart from '../cart/cart';
+import numberCtrl from '../numberCtrl/numberCtrl';
 export default {
   name: 'goods',
   props: {
@@ -48,19 +52,30 @@ export default {
   },
   data: function() {
     return {
-      goods: {},
+      goods: [],
       scrollY: 0,
       heightList: [0]
     };
   },
   computed: {
-    currentIdx: function() {
+    currentIdx() {
       for (let i = 0; i < this.heightList.length; i++) {
         if (this.scrollY >= this.heightList[i] && this.scrollY < this.heightList[i + 1]) {
           return i;
         }
       }
       return 0;
+    },
+    foodList() {
+      let foods = [];
+      this.goods.forEach(good => {
+        good.foods.forEach(food => {
+          if (food.count) {
+            foods.push(food);
+          }
+        });
+      });
+      return foods;
     }
   },
   watch: {
@@ -77,6 +92,7 @@ export default {
           click: true
         });
         this.contentScroll = new BScroll(this.$refs.contentWrapper, {
+          click: true,
           probeType: 3
         });
         this.contentScroll.on('scroll', (pos) => {
@@ -106,7 +122,8 @@ export default {
     }
   },
   components: {
-    'v-cart': cart
+    'v-cart': cart,
+    'v-number-ctrl': numberCtrl
   }
 };
 </script>
@@ -175,7 +192,6 @@ export default {
                 @include border-1px(rgba(7,17,27,.1));
                 &:last-child {
                     @include border-none();
-                    padding-bottom: 0;
                 }
                 .avatar {
                     flex: 0 0 57px;
@@ -200,6 +216,9 @@ export default {
                     .sold-count {
                         margin-right: 12px;
                     }
+                    .price {
+                        font-size: 0;
+                    }
                     .now-price,
                     .old-price {
                         font-size: 14px;
@@ -215,6 +234,13 @@ export default {
                         color: rgb(147,153,159);
                         font-size: 10px;
                         text-decoration: line-through;
+                    }
+                    .number-ctrl-wrapper {
+                        position: absolute;
+                        right: 0;
+                        bottom: 16px;
+                        height: 24px;
+                        line-height: 24px;
                     }
                 }
             }

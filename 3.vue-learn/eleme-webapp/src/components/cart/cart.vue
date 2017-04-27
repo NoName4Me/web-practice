@@ -6,7 +6,7 @@
       <div class="count" v-show="foodCount>0">{{foodCount}}</div>
     </div>
     <div class="price-wrapper">
-      <span class="food-price" :class="{active:foodPrice>1}">￥{{foodPrice}}元</span>
+      <span class="food-price" :class="{active:foodPrice>1}">￥{{foodPrice}}</span>
       <span class="deliver-price">另需配送费￥{{cartPrices.deliveryPrice}}元</span>
     </div>
   </div>
