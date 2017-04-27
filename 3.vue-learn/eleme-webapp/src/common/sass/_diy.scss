@@ -4,24 +4,21 @@ html {
   padding: 0;
   line-height: 1;
   font-weight: 200;
-  font-family: "PingFang SC","STHeitiSC-Light","Helvetica-Light",arial,sans-serif;
+  font-family: "PingFang SC","STHeitiSC","Helvetica",arial,sans-serif;
 }
 
-ul,li{
+h1,
+h2,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+li,
+ul {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-.clearfix{
-  display: inline-block;
-  &after{
-    display: block;
-    content:".";
-    height:0;
-    line-height: 0;
-    clear:both;
-    visibility: hidden;
-  }
 }
 @mixin border-1px($color) {
   position: relative;
@@ -36,35 +33,72 @@ ul,li{
     content: ' ';
   }
 }
+@mixin border-none() {
+  &:after {
+    display: none!important;
+  }
+}
 @mixin bg-image($url) {
   background-image: url($url+"@2x.png");
   @media (-webkit-min-device-pixel-ratio:3),(min-device-pixel-ratio:3) {
     background-image: url($url+"@3x.png");
   }
 }
+@mixin icon-with-text($icSize,$icIdx,$icTxMg) {
+  .icon {
+    display: inline-block;
+    width: $icSize;
+    height: $icSize;
+    background-size: $icSize $icSize;
+    margin-right: $icTxMg;
+    background-repeat: no-repeat;
 
-@mixin star-style($name,$wh,$mg) {
-    .star-#{$name} {
-        width: $wh;
-        height: $wh;
-        margin-right: $mg;
-        background-size: $wh $wh;
-        background-repeat: no-repeat;
-        &:last-child {
-            margin-right: 0;
-        }
-        &.on {
-            @include bg-image( 'star#{$name}_on');
-        }
-        &.half {
-            @include bg-image( 'star#{$name}_half');
-        }
-        &.off {
-            @include bg-image( 'star#{$name}_off');
-        }
+    &.decrease {
+      @include bg-image( 'decrease_#{$icIdx}');
     }
-}
 
+    &.discount {
+      @include bg-image( 'discount_#{$icIdx}');
+    }
+
+    &.guarantee {
+      @include bg-image( 'guarantee_#{$icIdx}');
+    }
+
+    &.invoice {
+      @include bg-image( 'invoice_#{$icIdx}');
+    }
+
+    &.special {
+      @include bg-image( 'special_#{$icIdx}');
+    }
+  }
+}
+@mixin star-style($name,$wh,$mg) {
+  .star-#{$name} {
+    width: $wh;
+    height: $wh;
+    margin-right: $mg;
+    background-size: $wh $wh;
+    background-repeat: no-repeat;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &.on {
+      @include bg-image( 'star#{$name}_on');
+    }
+
+    &.half {
+      @include bg-image( 'star#{$name}_half');
+    }
+
+    &.off {
+      @include bg-image( 'star#{$name}_off');
+    }
+  }
+}
 @media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5) {
   .border-1px {
     &:after {

@@ -82,31 +82,7 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang='scss'>
 @import '../../common/sass/_diy.scss';
-@mixin icon-with-text($icSize,$icIdx,$icTxMg) {
-    .icon {
-        display: inline-block;
-        width: $icSize;
-        height: $icSize;
-        background-size: $icSize $icSize;
-        margin-right: $icTxMg;
-        background-repeat: no-repeat;
-        &.decrease {
-            @include bg-image( 'decrease_#{$icIdx}');
-        }
-        &.discount {
-            @include bg-image( 'discount_#{$icIdx}');
-        }
-        &.guarantee {
-            @include bg-image( 'guarantee_#{$icIdx}');
-        }
-        &.invoice {
-            @include bg-image( 'invoice_#{$icIdx}');
-        }
-        &.special {
-            @include bg-image( 'special_#{$icIdx}');
-        }
-    }
-}
+
 
 .header {
     position: relative;
@@ -244,7 +220,8 @@ export default {
         height: 100%;
         overflow: auto;
         opacity: 1;
-        background-color: rgba(7,17,27,.8);
+        background-color: rgba(7,17,27,.9);
+
         &.fade-enter-active,
         &.fade-leave {
           transition: all .5s ease-out;
