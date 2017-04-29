@@ -28,7 +28,7 @@
                 <span class="now-price"><span class="pre">￥</span>{{food.price}}</span>
                 <span v-if="food.oldPrice" class="old-price"><span class="pre">￥</span>{{food.oldPrice}}</span>
                 <div class="number-ctrl-wrapper">
-                  <v-number-ctrl :food="food"></v-number-ctrl>
+                  <v-number-ctrl :food="food" :hub="eventHub"></v-number-ctrl>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
       </li>
     </ul>
   </div>
-  <v-cart :food-list="foodList" :cart-prices="{deliveryPrice:seller.deliveryPrice,minPrice:seller.minPrice}"></v-cart>
+  <v-cart :hub="eventHub" :food-list="foodList" :cart-prices="{deliveryPrice:seller.deliveryPrice,minPrice:seller.minPrice}"></v-cart>
 </div>
 </template>
 
@@ -45,6 +45,8 @@
 import BScroll from 'better-scroll';
 import cart from '../cart/cart';
 import numberCtrl from '../numberCtrl/numberCtrl';
+import Vue from 'vue';
+
 export default {
   name: 'goods',
   props: {
@@ -85,6 +87,7 @@ export default {
     }
   },
   created() {
+    this.eventHub = new Vue();
     this.$http.get('/get/goods').then((res) => {
       this.goods = res.body.data;
       this.$nextTick(() => {
