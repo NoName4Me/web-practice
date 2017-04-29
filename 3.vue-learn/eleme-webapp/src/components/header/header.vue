@@ -219,9 +219,8 @@ export default {
         width: 100%;
         height: 100%;
         overflow: auto;
-        opacity: 1;
-        background-color: rgba(7,17,27,.9);
-
+        background-color: rgba(7,17,27,.6);
+        backdrop-filter: blur(10px);
         &.fade-enter-active,
         &.fade-leave {
           transition: all .5s ease-out;

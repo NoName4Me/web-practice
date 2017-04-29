@@ -28,7 +28,7 @@ export default {
       } else {
         this.food.count++;
       }
-      console.log(event.srcElement.getBoundingClientRect());
+      // console.log(event.srcElement.getBoundingClientRect());
       this.hub.$emit('drop-ball', event.srcElement.getBoundingClientRect());
     },
     minusOne(event) {
@@ -47,11 +47,15 @@ export default {
 <style rel="stylesheet/scss" lang="scss">
 .number-ctrl {
     font-size: 0;
+    display: flex;
+    align-items: center;
+    // height: 36px;
     & > * {
         display: inline-block;
         font-size: 24px;
         padding: 6px 4px;
         color: rgb(0,160,220);
+        flex: 0;
     }
     .fade-enter {
         opacity: 0;
@@ -73,11 +77,13 @@ export default {
         opacity: 0;
     }
     .ctrl-number {
-        width: 14px;
+        min-width: 20px;
+        width: 20px;
+        line-height: 36px;
         font-size: 10px;
         text-align: center;
-        vertical-align: top;
         color: rgb(147,153,159);
+        padding: 0;
     }
 
 }
