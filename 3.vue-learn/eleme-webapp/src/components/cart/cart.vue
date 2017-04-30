@@ -37,7 +37,7 @@
             <div class="name">{{food.name}}</div>
             <div class="price-number">
               <div class="price"><span class="pre">￥</span>{{food.price*food.count}}</div>
-              <v-number-ctrl :food="food" :hub="hub" class="test"></v-number-ctrl>
+              <v-number-ctrl :food="food" :hub="hub"></v-number-ctrl>
             </div>
           </li>
         </ul>
@@ -168,13 +168,19 @@ export default {
     },
     toggleCartList() {
       if (this.foodCount > 0) {
-        if (!this.isShowCartList) {
-          this.foodListScroll = new BScroll(this.$refs.foodListWrapper, {
-            click: true
-          });
-        }
-        console.log(this.$refs.foodListWrapper);
         this.isShowCartList = !this.isShowCartList;
+        if (this.isShowCartList) {
+          console.log(this.$refs.foodListWrapper);
+          if (!this.foodListScroll) {
+            this.$nextTick(() => {
+              this.foodListScroll = new BScroll(this.$refs.foodListWrapper, {
+                click: true
+              });
+            });
+          } else {
+            this.foodListScroll.refresh();
+          }
+        }
       }
     },
     emptyCart() {
@@ -201,13 +207,13 @@ export default {
     bottom: 0;
     width: 100%;
     height: 46px;
-    background-color: #141d27;
     z-index: 10;
     color: rgba(255,255,255,.4);
     .cart-simple {
-        display: flex;
         position: relative;
-        z-index: 40;
+        z-index: 3;
+        display: flex;
+        background-color: #141d27;
         .left {
             flex: 1;
             display: flex;
@@ -299,7 +305,7 @@ export default {
         left: 32px;
         bottom: 18px;
         transition: all 0.3s linear;
-        z-index: 50;
+        z-index: 5;
         .inner {
             width: 24px;
             height: 24px;
@@ -319,20 +325,19 @@ export default {
         position: fixed;
         bottom: 46px;
         font-size: 14px;
-        max-height: 217px;
         width: 100%;
         color: rgb(7,17,27);
         background-color: #fff;
-        z-index: -20;
+        z-index: 2;
         &.cart-detail-enter,
         &.cart-detail-leave-to {
             transform: translate3d(0,100%,0);
         }
-        &.cart-detail-enter-active{
-          transition: all .3s ease-in;
+        &.cart-detail-enter-active {
+            transition: all 0.3s ease-in;
         }
         &.cart-detail-leave-active {
-            transition: all .3s ease-out;
+            transition: all 0.3s ease-out;
         }
         &.cart-detail-enter-to,
         &.cart-detail-leave {
@@ -362,6 +367,7 @@ export default {
         .food-list-wrapper {
             position: relative;
             overflow: hidden;
+            max-height: 217px;
             .food-list {
                 .food {
                     margin: 0 18px;
@@ -400,15 +406,16 @@ export default {
         top: 0;
         width: 100%;
         height: 100%;
-        z-index: -21;
+        z-index: 1;
         background-color: rgba(7,17,27,.6);
         backdrop-filter: blur(10px);
         &.mask-enter,
         &.mask-leave-to {
             background-color: rgba(7,17,27,0);
         }
-        &.mask-enter-active,&.mask-leave-active{
-          transition: all .4s ease;
+        &.mask-enter-active,
+        &.mask-leave-active {
+            transition: all 0.4s ease;
         }
         &.mask-enter-to,
         &.mask-leave {
