@@ -15,7 +15,7 @@
       <li v-for="good of goods" class="foods">
         <h1 class="title">{{good.name}}</h1>
         <ul class="food-list">
-          <li v-for="food of good.foods" class="food border-1px">
+          <li v-for="food of good.foods" class="food border-1px" @click="selectFood(food, $event)">
             <div class="avatar"><img width="57" height="57" :src="food.icon" alt=""></div>
             <div class="content">
               <h1 class="name">{{food.name}}</h1>
@@ -38,6 +38,10 @@
     </ul>
   </div>
   <v-cart :hub="eventHub" :food-list="foodList" :cart-prices="{deliveryPrice:seller.deliveryPrice,minPrice:seller.minPrice}"></v-cart>
+  <transition name="slide">
+    <v-food-detail :hub="eventHub" @hide="hideFoodDetail" :food="selectedFood" v-if="isFoodDetailShow">
+    </v-food-detail>
+  </transition>
 </div>
 </template>
 
@@ -45,6 +49,7 @@
 import BScroll from 'better-scroll';
 import cart from '../cart/cart';
 import numberCtrl from '../numberCtrl/numberCtrl';
+import foodDetail from '../foodDetail/foodDetail';
 import Vue from 'vue';
 
 export default {
@@ -56,7 +61,9 @@ export default {
     return {
       goods: [],
       scrollY: 0,
-      heightList: [0]
+      heightList: [0],
+      selectedFood: {},
+      isFoodDetailShow: false
     };
   },
   computed: {
@@ -122,11 +129,22 @@ export default {
       let contentList = this.$refs.contentWrapper.querySelectorAll('.content-wrapper .foods');
       let el = contentList[index];
       this.contentScroll.scrollToElement(el, 500);
+    },
+    selectFood(food, $event) {
+      if (!event._constructed) {
+        return;
+      }
+      this.selectedFood = food;
+      this.isFoodDetailShow = true;
+    },
+    hideFoodDetail() {
+      this.isFoodDetailShow = false;
     }
   },
   components: {
     'v-cart': cart,
-    'v-number-ctrl': numberCtrl
+    'v-number-ctrl': numberCtrl,
+    'v-food-detail': foodDetail
   }
 };
 </script>

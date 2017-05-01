@@ -22,7 +22,6 @@ ul {
 }
 @mixin border-1px($color) {
   position: relative;
-
   &:after {
     display: block;
     position: absolute;

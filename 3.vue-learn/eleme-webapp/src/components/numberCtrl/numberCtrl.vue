@@ -1,10 +1,10 @@
 <template>
 <div class="number-ctrl">
   <transition name="fade">
-    <div v-show='food.count>0' class="ctrl-minus ic-remove_circle_outline" @click="minusOne($event)"></div>
+    <div v-show='food.count>0' class="ctrl-minus ic-remove_circle_outline" @click.stop.prevent="minusOne($event)"></div>
   </transition>
   <div v-show='food.count>0' class="ctrl-number">{{food.count}}</div>
-  <div class="ctrl-plus ic-add_circle" @click="plusOne($event)"></div>
+  <div class="ctrl-plus ic-add_circle" @click.stop.prevent="plusOne($event)"></div>
 </div>
 </template>
 
