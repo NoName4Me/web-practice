@@ -24,3 +24,9 @@ this is a practice of [LiaoXuefeng's Javascript Learning](http://www.liaoxuefeng
 simple web chat room, based on Node / Websocket / Koa / Nunjuncks / Vue / Sequelize.
 
 <img src="https://github.com/NoName4Me/FE-basic-practice/blob/master/2.chat-room/static/images/chat-room.png" width="500">
+
+## 3. vue-learn
+### [eleme-webapp](https://github.com/NoName4Me/web-practice/tree/master/3.vue-learn/eleme-webapp)
+based on vue.js, refrenced to imooc guide.
+
+<img src="https://github.com/NoName4Me/web-practice/blob/master/3.vue-learn/eleme-webapp/eleme-webapp.gif" width="300">
