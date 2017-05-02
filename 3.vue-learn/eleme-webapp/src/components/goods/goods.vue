@@ -128,7 +128,10 @@ export default {
       }
       let contentList = this.$refs.contentWrapper.querySelectorAll('.content-wrapper .foods');
       let el = contentList[index];
-      this.contentScroll.scrollToElement(el, 500);
+      this.currentIdx = index;
+      this.$nextTick(() => {
+        this.contentScroll.scrollToElement(el, 300);
+      });
     },
     selectFood(food, $event) {
       if (!event._constructed) {

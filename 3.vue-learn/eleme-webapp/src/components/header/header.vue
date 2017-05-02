@@ -83,7 +83,6 @@ export default {
 <style rel="stylesheet/scss" lang='scss'>
 @import '../../common/sass/_diy.scss';
 
-
 .header {
     position: relative;
     color: #fff;

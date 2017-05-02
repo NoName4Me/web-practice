@@ -1,6 +1,5 @@
 <template>
 <div id="app">
-
   <v-header :seller="seller"></v-header>
   <div class="tab border-1px">
     <div class="tab-item">
