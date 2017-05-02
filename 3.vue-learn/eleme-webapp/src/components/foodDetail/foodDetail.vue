@@ -23,17 +23,20 @@
     </div>
     <div class="ratings">
       <h1 class="title">商品评价</h1>
+      <v-rating-filter :ratings="food.ratings" @filterd="filterRatings"></v-rating-filter>
+      <!--
       <div class="filters border-1px">
         <p class="all">全部<span>{{food.ratings[0].username}}</span></p>
         <p class="recommend">推荐<span>{{recommendCount}}</span></p>
         <p class="bad">吐槽<span>{{badCount}}</span></p>
       </div>
       <div class="filter-only-content" @click="filterContentOnly()"><i class="ic-check_circle" :class="{active:isContentOnly}"></i><span>只看有内容的评价</span></div>
+-->
       <div class="rating-list">
         <ul>
-          <li v-for="rating of food.ratings" class="rating border-1px">
+          <li v-for="rating of food.ratings" class="rating border-1px" v-show="showRating(rating.rateType, rating.text)">
             <div class="time-user">
-              <p class="time">{{rating.rateTime}}</p>
+              <p class="time">{{rating.rateTime | formatDate}}</p>
               <div class="user">
                 <span class="name">{{rating.username}}</span><img :src="rating.avatar" alt="" class="avatar" width="12" height="12"></div>
             </div>
@@ -42,6 +45,9 @@
             </div>
           </li>
         </ul>
+        <div class="no-rating" v-show="!food.ratings||food.ratings.length===0">
+          暂无评价
+        </div>
       </div>
     </div>
   </div>
@@ -52,6 +58,10 @@
 import BScroll from 'better-scroll';
 import numberCtrl from '../numberCtrl/numberCtrl';
 import Vue from 'vue';
+import ratingFilter from '../ratings/ratingFilter';
+import {
+  dateFormat
+} from '../../common/js/utils';
 export default {
   name: 'food-detail',
   props: {
@@ -67,8 +77,9 @@ export default {
   },
   data() {
     return {
-      isContentOnly: false,
-      isShow: true
+      isShow: true,
+      filterType: 2,
+      filterContent: false
     };
   },
   computed: {
@@ -79,10 +90,12 @@ export default {
       return this.food.ratings.filter(x => x.rateType === 0).length;
     }
   },
+  filters: {
+    formatDate(time) {
+      return dateFormat(new Date(time), 'yyyy-MM-dd hh:mm');
+    }
+  },
   methods: {
-    filterContentOnly() {
-      this.isContentOnly = !this.isContentOnly;
-    },
     show() {
       this.isShow = true;
     },
@@ -95,11 +108,39 @@ export default {
       }
       Vue.set(this.food, 'count', 1);
       this.hub.$emit('drop-ball', event.srcElement.getBoundingClientRect());
-      console.log(this.food);
+    },
+    filterRatings(type) {
+      switch (type) {
+        case 'all':
+          this.filterType = 2;
+          break;
+        case 'recommend':
+          this.filterType = 0;
+          break;
+        case 'bad':
+          this.filterType = 1;
+          break;
+        case 'content-yes':
+          this.filterContent = true;
+          break;
+        case 'content-no':
+          this.filterContent = false;
+          break;
+      }
+      // console.log('hello', type, this.filterType);
+    },
+    showRating(type, text) {
+      if (this.filterContent && !text) {
+        return false;
+      }
+      if (this.filterType === 2 || type === this.filterType) {
+        return true;
+      }
     }
   },
   components: {
-    'v-number-ctrl': numberCtrl
+    'v-number-ctrl': numberCtrl,
+    'v-rating-filter': ratingFilter
   }
 };
 </script>
@@ -240,6 +281,7 @@ export default {
                 line-height: 14px;
                 font-weight: 700;
             }
+            /*
             .filters {
                 display: flex;
                 @include border-1px(rgba(7,17,27,.1));
@@ -283,7 +325,7 @@ export default {
                 span {
                     vertical-align: top;
                 }
-            }
+            }*/
             .rating-list {
                 .rating {
                     padding: 16px 0;
@@ -324,6 +366,12 @@ export default {
                         }
                     }
                 }
+            }
+            .no-rating {
+                padding-top: 16px;
+                font-size: 12px;
+                color: rgb(147,153,159);
+                line-height: 16px;
             }
         }
     }
