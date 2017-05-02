@@ -10,6 +10,7 @@ npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
+## suggest using your phone conneted to the same wifi which your PC connected to, then you can access this site in your phone's browser by your.pc's.ip.adress:8080.
 
 # build for production with minification
 npm run build
